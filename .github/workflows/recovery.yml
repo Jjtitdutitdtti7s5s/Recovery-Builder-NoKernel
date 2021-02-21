@@ -16,7 +16,7 @@ on:
 env:
   MANIFEST: git://github.com/SHRP/platform_manifest_twrp_omni.git -b v3_9.0
   DEVICE: violet
-  DT_LINK: https://github.com/Jjtitdutitdtti7s5s/lolfgddh.git
+  DT_LINK: https://github.com/Brock5555/android_recovery_xiaomi_violet.git
   DT_PATH: device/xiaomi/violet
   TARGET: recoveryimage
   TZ: Asia/Kolkata
@@ -55,6 +55,11 @@ jobs:
        - name: Build
          run: |
               cd work
+              cd bootable/recovery/gui/theme/shrp_portrait_hdpi/pages/
+              rm install.xml
+              wget https://raw.githubusercontent.com/Brock5555/tmp/main/install.xml
+              cd ../../..
+              cd ../../..
               . build/envsetup.sh &&lunch omni_$DEVICE-eng &&export ALLOW_MISSING_DEPENDENCIES=true && mka $TARGET
              
        - uses: actions/upload-artifact@v2
