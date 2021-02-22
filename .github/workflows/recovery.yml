@@ -63,6 +63,7 @@ jobs:
               ls
               cd ../../..
               cd ../../..
+              pwd
               ls
               . build/envsetup.sh &&lunch omni_$DEVICE-eng &&export ALLOW_MISSING_DEPENDENCIES=true && mka $TARGET
              
