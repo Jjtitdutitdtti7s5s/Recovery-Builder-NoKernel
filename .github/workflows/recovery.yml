@@ -16,7 +16,7 @@ on:
 env:
   MANIFEST: git://github.com/SHRP/platform_manifest_twrp_omni.git -b v3_9.0
   DEVICE: violet
-  DT_LINK: https://github.com/Dazzler555/addons_eu.git
+  DT_LINK: https://github.com/Dazzler555/prhsbr.git
   DT_PATH: device/xiaomi/violet
   TARGET: recoveryimage
   TZ: Asia/Kolkata
