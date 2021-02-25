@@ -55,16 +55,6 @@ jobs:
        - name: Build
          run: |
               cd work
-              cd bootable/recovery/gui/theme/shrp_portrait_hdpi/pages/
-              rm install.xml
-              ls
-              pwd
-              wget https://raw.githubusercontent.com/Brock5555/tmp/main/install.xml
-              ls
-              cd ../../..
-              cd ../../..
-              pwd
-              ls
               . build/envsetup.sh &&lunch omni_$DEVICE-eng &&export ALLOW_MISSING_DEPENDENCIES=true && mka $TARGET
              
        - name: Upload recovery image
