@@ -14,7 +14,11 @@ on:
     types: [started]
 
 env:
-  DEVICE: phoenix
+  MANIFEST: https://gitlab.com/OrangeFox/Manifest.git
+  DEVICE: rosy
+  DT_LINK: https://github.com/ElytrA8/recovery_rosy
+  DT_PATH: device/xiaomi/rosy
+  TARGET: recoveryimage
   TZ: Asia/Kolkata
 
 jobs:
@@ -40,22 +44,21 @@ jobs:
             sudo curl --create-dirs -L -o /usr/local/bin/repo -O -L https://storage.googleapis.com/git-repo-downloads/repo
             sudo chmod a+rx /usr/local/bin/repo
             
-       - name: Sync recovery source and device tree amd build and upload
+       - name: Sync recovery source and device tree
          run: |
              mkdir work
              cd work
-             rsync rsync://sources.orangefox.download/sources/fox_10.0 . --progress -a
-             ls
-             pwd
-             cd fox_10.0
-             git clone https://github.com/dozzler555/foppp.git device/xiaomi/phoenix
-             ls
-             . build/envsetup.sh
-             export ALLOW_MISSING_DEPENDENCIES=true
-             export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
-             export LC_ALL="C"
-             lunch omni_phoenix-eng
-             mka recoveryimage
-             cd out/target/product/$DEVICE
-             curl -sL https://git.io/file-transfer | sh
-             ./transfer wet *.zip
+             repo init -u $MANIFEST --depth=1 --groups=all,-notdefault,-device,-darwin,-x86,-mips
+             repo sync -j4
+             git clone $DT_LINK --depth=1 --single-branch $DT_PATH
+             
+       - name: Build
+         run: |
+              cd work
+              . build/envsetup.sh &&lunch omni_$DEVICE-eng &&export ALLOW_MISSING_DEPENDENCIES=true && mka $TARGET
+             
+       - name: Upload recovery image
+         run: |
+              cd work/out/target/product/$DEVICE
+              curl -sL https://git.io/file-transfer | sh
+              ./transfer wet *.zip    
