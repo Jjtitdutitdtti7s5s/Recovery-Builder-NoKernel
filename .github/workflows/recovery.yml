@@ -55,7 +55,13 @@ jobs:
          run: |
               cd work
               . build/envsetup.sh &&lunch omni_$DEVICE-eng &&export ALLOW_MISSING_DEPENDENCIES=true && mka $TARGET
-              
+              cd out/target/product/violet/recovery/root
+              wget https://raw.githubusercontent.com/that1/ldcheck/master/ldcheck
+              wget https://raw.githubusercontent.com/that1/ldcheck/master/libneeds
+              chmod a+x ldcheck
+              chmod a+x libneeds
+              ldcheck -p system/lib64:vendor/lib64 -d system/bin/qseecomd
+                           
        - name: Upload recovery image
          run: |
               cd work/out/target/product/$DEVICE
