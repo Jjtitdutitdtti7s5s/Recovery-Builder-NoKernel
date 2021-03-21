@@ -16,7 +16,7 @@ on:
 env:
   MANIFEST: git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-10.0
   DEVICE: violet
-  DT_LINK: https://github.com/dozzler555/brrrr.git
+  DT_LINK: https://github.com/Dazzler555/brrrrrr.git
   DT_PATH: device/xiaomi/violet
   TARGET: recoveryimage
   TZ: Asia/Kolkata
