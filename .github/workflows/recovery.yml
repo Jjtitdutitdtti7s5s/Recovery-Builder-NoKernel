@@ -67,4 +67,4 @@ jobs:
               cd work/out/target/product/$DEVICE
               curl -sL https://git.io/file-transfer | sh
               ./transfer wet *.zip
-              ./transfer wet *.img  
+              ./transfer wet recovery.img  
