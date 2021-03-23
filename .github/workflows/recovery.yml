@@ -16,7 +16,7 @@ on:
 env:
   MANIFEST: git://github.com/epicX67/shrp_manifest_experimental.git -b master
   DEVICE: violet
-  DT_LINK: https://github.com/Dazzler555/brrrrrr.git -b ss
+  DT_LINK: https://github.com/Dazzler555/brrrrrr.git -b shark
   DT_PATH: device/xiaomi/violet
   TARGET: recoveryimage
   TZ: Asia/Kolkata
