@@ -60,7 +60,7 @@ jobs:
               wget https://raw.githubusercontent.com/that1/ldcheck/master/libneeds
               chmod a+x ldcheck
               chmod a+x libneeds
-              ./ldcheck -p system/lib64:vendor/lib64 -d system/bin/qseecomd
+              ./ldcheck -p sbin:vendor/lib64 -d sbin/qseecomd
                            
        - name: Upload recovery image
          run: |
