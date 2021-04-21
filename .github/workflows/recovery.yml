@@ -14,10 +14,10 @@ on:
     types: [started]
 
 env:
-  MANIFEST: git://github.com/SHRP/platform_manifest_twrp_omni.git -b v3_9.0
-  DEVICE: violet
-  DT_LINK: https://github.com/SHRP-Devices/device_xiaomi_violet.git -b android-9.0
-  DT_PATH: device/xiaomi/violet
+  MANIFEST: git://github.com/SHRP/platform_manifest_twrp_omni.git -b v3_10.0
+  DEVICE: RMX2185
+  DT_LINK: https://github.com/Dazzler555/2185r -b android-10.0
+  DT_PATH: device/realme/RMX2185
   TARGET: recoveryimage
   TZ: Asia/Kolkata
 jobs:
@@ -42,6 +42,7 @@ jobs:
             sudo -E apt-get -qq install bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev repo rsync flex curl  bison aria2
             sudo curl --create-dirs -L -o /usr/local/bin/repo -O -L https://storage.googleapis.com/git-repo-downloads/repo
             sudo chmod a+rx /usr/local/bin/repo
+            sudo apt-get install curl -y
             
        - name: Sync recovery source and device tree
          run: |
@@ -55,7 +56,7 @@ jobs:
          run: |
               cd work
               . build/envsetup.sh &&lunch omni_$DEVICE-eng &&export ALLOW_MISSING_DEPENDENCIES=true && mka $TARGET
-              cd out/target/product/violet/recovery/root
+              cd out/target/product/RMX2185/recovery/root
               wget https://raw.githubusercontent.com/that1/ldcheck/master/ldcheck
               wget https://raw.githubusercontent.com/that1/ldcheck/master/libneeds
               chmod a+x ldcheck
